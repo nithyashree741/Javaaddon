@@ -1,0 +1,28 @@
+package constructor;
+
+public class DefaultConstructor {
+		String lang;
+		String name;
+		int year;
+		DefaultConstructor(String lang,int year,String name){
+			this.lang=lang;
+			this.name=name;
+			this.year=year;
+	}
+		DefaultConstructor(DefaultConstructor cp){
+			this.lang=cp.lang;
+			this.name=cp.name;
+			this.year=cp.year;
+		}
+		void display(){
+			System.out.println("userdefine Constructor"+" "+name+" "+year);
+		}
+	public static void main(String args[]){
+	DefaultConstructor re=new DefaultConstructor("java",1995,"programming");
+		re.display();
+		DefaultConstructor r1=new DefaultConstructor(re);
+		System.out.println("Copy constructor");
+		r1.display();
+	}
+
+}
