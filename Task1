@@ -1,4 +1,5 @@
 package basics;
+
 public class Task1{
 public static void main(String args[]){
 int[]=new int[7];
