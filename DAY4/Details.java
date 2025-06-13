@@ -17,13 +17,10 @@ public class Details {
 
 	                int total = 0;
 	                for (int i = 1; i < parts.length; i++) {
-	                    total += Integer.parseInt(parts[i]);
+	                    total += Integer.parseInt([i]);
 	                }
-
-	                double average = (double) total / (parts.length - 1);
-	                String result = name + ", Total: " + total + ", Average: " + String.format("%.2f", average);
-	                
-	                writer.write(result);
+                  String result = name + ", Total: " + total + ", Average: " + ");
+	                 writer.write(result);
 	                writer.newLine();
 	            }
 
