@@ -1,0 +1,39 @@
+1.OR operator
+mysql> select * from staff where dept='ct' or salary >2000;
++-------+-----------+------+--------+------------+
+| empid | empname   | dept | salary | joindate   |
++-------+-----------+------+--------+------------+
+|     1 | Shree     | CT   |  30000 | 2023-06-25 |
+|     2 | Neha      | CA   |  30000 | 2023-06-27 |
+|     3 | Anu       | CS   |  30000 | 2023-05-01 |
+|     4 | Keerthana | PA   |  25000 | 2023-02-25 |
+|     5 | yoga      | it   |  50000 | 2023-05-23 |
++-------+-----------+------+--------+------------+
+
+2.AND operator
+mysql> select * from staff where dept='it' and salary=50000;
++-------+---------+------+--------+------------+
+| empid | empname | dept | salary | joindate   |
++-------+---------+------+--------+------------+
+|     5 | yoga    | it   |  50000 | 2023-05-23 |
++-------+---------+------+--------+------------+
+
+3.Not in
+mysql> select * from staff where empid not in(3,2);
++-------+-----------+------+--------+------------+
+| empid | empname   | dept | salary | joindate   |
++-------+-----------+------+--------+------------+
+|     1 | Shree     | CT   |  30000 | 2023-06-25 |
+|     4 | Keerthana | PA   |  25000 | 2023-02-25 |
+|     5 | yoga      | it   |  50000 | 2023-05-23 |
++-------+-----------+------+--------+------------+
+
+4.Like
+mysql> select empname from staff where empname like'%a';
++-----------+
+| empname   |
++-----------+
+| Neha      |
+| Keerthana |
+| yoga      |
++-----------+
