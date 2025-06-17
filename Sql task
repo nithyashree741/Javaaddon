@@ -1,0 +1,56 @@
+mysql> create  table stu(sno int, name varchar(20), course varchar(20), marks int,books varchar(20), fees int);
+
+mysql> insert into stu(sno,name,course,marks,books,fees)values
+    ->  (1,'varsha','web',76,'computer science',20000),
+    -> (2,'risha','computer technology',86,'networking',30000),
+    -> (3,'riya','accountant',86,'basic accounts',40000),
+    -> (4,'diya','data analyist',89,'data structure',50000),
+    -> (5,'anu','computer',87,'data science',50000),
+    -> (6,'vaishu','information tech',88,'web designing',50000);
+
+mysql> select * from stu;
++------+--------+---------------------+-------+------------------+-------+
+| sno  | name   | course              | marks | books            | fees  |
++------+--------+---------------------+-------+------------------+-------+
+|    1 | varsha | web                 |    76 | computer science | 20000 |
+|    2 | risha  | computer technology |    86 | networking       | 30000 |
+|    3 | riya   | accountant          |    86 | basic accounts   | 40000 |
+|    4 | diya   | data analyist       |    89 | data structure   | 50000 |
+|    5 | anu    | computer            |    87 | data science     | 50000 |
+|    6 | vaishu | information tech    |    88 | web designing    | 50000 |
++------+--------+---------------------+-------+------------------+-------+
+
+ select * from stu where marks>80;
++------+--------+---------------------+-------+----------------+-------+
+| sno  | name   | course              | marks | books          | fees  |
++------+--------+---------------------+-------+----------------+-------+
+|    2 | risha  | computer technology |    86 | networking     | 30000 |
+|    3 | riya   | accountant          |    86 | basic accounts | 40000 |
+|    4 | diya   | data analyist       |    89 | data structure | 50000 |
+|    5 | anu    | computer            |    87 | data science   | 50000 |
+|    6 | vaishu | information tech    |    88 | web designing  | 50000 |
++------+--------+---------------------+-------+----------------+-------+
+
+ select course,fees
+    -> from stu
+    -> order by fees asc;
++---------------------+-------+
+| course              | fees  |
++---------------------+-------+
+| web                 | 20000 |
+| computer technology | 30000 |
+| accountant          | 40000 |
+| data analyist       | 50000 |
+| computer            | 50000 |
+| information tech    | 50000 |
++---------------------+-------+
+
+mysql> select books
+    -> from stu
+    -> where books like 'd%';
++----------------+
+| books          |
++----------------+
+| data structure |
+| data science   |
++----------------+
