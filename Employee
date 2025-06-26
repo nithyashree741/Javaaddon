@@ -1,0 +1,133 @@
+Employee attendance tracker 
+* import java.util.*;
+import java.time.*;
+
+class Employee {
+    int id;
+    String name;
+    String department;
+    String designation;
+    LocalDate joiningDate;
+
+    public Employee(int id, String name, String department, String designation, LocalDate joiningDate) {
+        this.id = id;
+        this.name = name;
+        this.department = department;
+        this.designation = designation;
+        this.joiningDate = joiningDate;
+    }
+
+    public String toString() {
+        return id + " | " + name + " | " + department + " | " + designation + " | Joined: " + joiningDate;
+    }
+}
+
+class Attendance {
+    int employeeId;
+    LocalDate date;
+    LocalTime checkIn;
+    LocalTime checkOut;
+
+    public Attendance(int employeeId, LocalDate date, LocalTime checkIn, LocalTime checkOut) {
+        this.employeeId = employeeId;
+        this.date = date;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
+
+    public String toString() {
+        return "EmpID: " + employeeId + " | Date: " + date + " | Check-In: " + checkIn + " | Check-Out: " + checkOut;
+    }
+}
+
+public class AttendanceTracker {
+    static List<Employee> employees = new ArrayList<>();
+    static List<Attendance> attendanceRecords = new ArrayList<>();
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int choice;
+
+        
+            choice = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1:
+                    addEmployee();
+                    break;
+                case 2:
+                    viewEmployees();
+                    break;
+                case 3:
+                    markAttendance();
+                    break;
+                case 4:
+                    viewAttendance();
+                    break;
+                case 0:
+                    System.out.println("Exiting program...");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+
+        } while (choice != 0);
+    }
+
+    static void addEmployee() {
+        System.out.print("Enter Employee ID: ");
+        int id = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        System.out.print("Enter Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Department: ");
+        String dept = sc.nextLine();
+
+        System.out.print("Enter Designation: ");
+        String desig = sc.nextLine();
+
+        LocalDate joiningDate = LocalDate.now();
+
+        Employee emp = new Employee(id, name, dept, desig, joiningDate);
+        employees.add(emp);
+        System.out.println("Employee added successfully.");
+    }
+
+    static void viewEmployees() {
+        System.out.println("\n--- Employee List ---");
+        for (Employee e : employees) {
+            System.out.println(e);
+        }
+    }
+
+    static void markAttendance() {
+        System.out.print("Enter Employee ID: ");
+        int id = sc.nextInt();
+
+        Optional<Employee> emp = employees.stream().filter(e -> e.id == id).findFirst();
+
+        if (emp.isPresent()) {
+            LocalDate today = LocalDate.now();
+            System.out.print("Enter Check-In Time (HH:mm): ");
+            String inTime = sc.next();
+            System.out.print("Enter Check-Out Time (HH:mm): ");
+            String outTime = sc.next();
+
+            Attendance att = new Attendance(id, today, LocalTime.parse(inTime), LocalTime.parse(outTime));
+            attendanceRecords.add(att);
+            System.out.println("Attendance marked.");
+        } else {
+            System.out.println("Employee not found.");
+        }
+    }
+
+    static void viewAttendance() {
+        System.out.println("\n--- Attendance Records ---");
+        for (Attendance a : attendanceRecords) {
+            System.out.println(a);
+        }
+    }
+}
